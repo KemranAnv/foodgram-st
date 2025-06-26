@@ -13,11 +13,11 @@ class Command(BaseCommand):
         csv_file_path = options['csv_file']
         try:
             with open(csv_file_path, 'r', encoding='utf-8') as file:
-                reader = csv.DictReader(file)
+                reader = csv.reader(file)
                 for row in reader:
                     Ingredient.objects.get_or_create(
-                        name=row[0],
-                        measurement_unit=row[1]
+                        name=row[0].strip(),
+                        measurement_unit=row[1].strip()
                     )
                 self.stdout.write(self.style.SUCCESS(
                     f'Ингредиенты успешно загружены из {csv_file_path}'))
