@@ -15,9 +15,23 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Ingredient',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, unique=True, verbose_name='Название ингредиента')),
-                ('measurement_unit', models.CharField(max_length=50, verbose_name='Единица измерения')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID')),
+                (
+                    'name',
+                    models.CharField(
+                        max_length=200,
+                        unique=True,
+                        verbose_name='Название ингредиента')),
+                (
+                    'measurement_unit',
+                    models.CharField(
+                        max_length=50, verbose_name='Единица измерения')),
             ],
             options={
                 'verbose_name': 'Ингредиент',
@@ -28,10 +42,34 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Tag',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, unique=True, verbose_name='Название тега')),
-                ('color', models.CharField(max_length=7, validators=[django.core.validators.RegexValidator('^#([A-Fa-f0-9]{6})$', 'Цвет должен быть в формате #RRGGBB')], verbose_name='Цвет (HEX)')),
-                ('slug', models.SlugField(max_length=100, unique=True, verbose_name='Слаг')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True, serialize=False,
+                        verbose_name='ID'
+                    )
+                ),
+                (
+                    'name',
+                    models.CharField(
+                        max_length=100,
+                        unique=True,
+                        verbose_name='Название тега'
+                    )
+                ),
+                (
+                    'color',
+                    models.CharField(
+                        max_length=7,
+                        validators=[
+                            django.core.validators.RegexValidator(
+                                '^#([A-Fa-f0-9]{6})$',
+                                'Цвет должен быть в формате #RRGGBB'
+                            )
+                        ], verbose_name='Цвет (HEX)')),
+                ('slug', models.SlugField(
+                    max_length=100, unique=True, verbose_name='Слаг')),
             ],
             options={
                 'verbose_name': 'Тег',
