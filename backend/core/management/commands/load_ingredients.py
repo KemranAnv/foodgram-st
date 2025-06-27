@@ -15,14 +15,22 @@ class Command(BaseCommand):
             with open(csv_file_path, 'r', encoding='utf-8') as file:
                 reader = csv.reader(file)
                 for row in reader:
+                    if len(row) != 2:
+                        self.stdout.write(
+                            self.style.WARNING(f'Некорректная строка: {row}')
+                        )
+                        continue
+                    name, measurement_unit = row
                     Ingredient.objects.get_or_create(
-                        name=row[0].strip(),
-                        measurement_unit=row[1].strip()
+                        name=name.strip(),
+                        measurement_unit=measurement_unit.strip()
                     )
                 self.stdout.write(self.style.SUCCESS(
-                    f'Ингредиенты успешно загружены из {csv_file_path}'))
+                    f'Ингредиенты успешно загружены из {csv_file_path}')
+                )
         except FileNotFoundError:
             self.stdout.write(self.style.ERROR(
-                f'Файл {csv_file_path} не найден'))
+                f'Файл {csv_file_path} не найден')
+            )
         except Exception as e:
             self.stdout.write(self.style.ERROR(f'Ошибка: {str(e)}'))
