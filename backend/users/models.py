@@ -87,5 +87,5 @@ class Subscription(models.Model):
     def __str__(self):
         return (
             f'{self.user.username} подписан на '
-            f'{self.subscribed_to.username}'
+            f'{self.author.username}'
         )
