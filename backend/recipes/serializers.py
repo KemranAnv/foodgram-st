@@ -3,9 +3,9 @@ from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 import base64
 from .models import Recipe, RecipeIngredient, Favorite, ShoppingCart
-# from core.models import Ingredient, Tag
 from core.serializers import TagSerializer
 from users.serializers import UserSerializer
+from api.serializers import RecipeShortSerializer
 
 User = get_user_model()
 
@@ -20,12 +20,6 @@ class RecipeIngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecipeIngredient
         fields = ('id', 'name', 'measurement_unit', 'amount')
-
-
-class RecipeShortSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Recipe
-        fields = ('id', 'name', 'image', 'cooking_time')
 
 
 class RecipeSerializer(serializers.ModelSerializer):
